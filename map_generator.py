@@ -17,9 +17,9 @@ from a power spectrum as input.
 
 # TO DO
 # try with different noises: opensimplex, fractional brownian noise...
-# plot planet with spherical projection
 
-from source.visualization_tools import *
+from source.visualization_tools import single_map, plot_grid
+import matplotlib.pyplot as plt
 
 #--- Parameters ---#
 
@@ -72,4 +72,4 @@ for llavor in range(10):
     fig.savefig("images/map_noise_{:}_seed_{:}_threshold_{:.1f}_sigma_{:.1f}.png".format(kind_noise,llavor,threshold,sigma))
     plt.close(fig)
 
-plot_grid(kind_noise,boxsize,params,sigma,threshold,num_plots=3,make_island=0,cmap=modified_gist_earth())
+plot_grid(kind_noise,boxsize,params,sigma,threshold,num_plots=3,make_island=0)

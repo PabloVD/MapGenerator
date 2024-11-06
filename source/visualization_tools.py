@@ -5,7 +5,7 @@
 #---------------------------
 
 import matplotlib.pyplot as plt
-from source.maps import *
+from source.maps import generate_map
 
 # Modify gist_earth color map to have a dark blue as the minimum value, instead of black
 def modified_gist_earth():

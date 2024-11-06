@@ -4,8 +4,9 @@
 # Started: 11/5/20
 #---------------------------
 
+import numpy as np
 from scipy import interpolate, ndimage
-from source.fields import *
+from source.fields import gaussian_field, perlin_field, warped_perlin_field, brownian_surface, cos_field
 
 # Filter the field with a gaussian window
 def smooth_field(field,sigmagauss,gridsize=None):
