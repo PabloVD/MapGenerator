@@ -2,6 +2,8 @@
 
 Generate procedural geographic maps from random fields.
 
+**Try an interactive demo [here](https://huggingface.co/spaces/PabloVD/MapGenerator).**
+
 ## Map generation
 
 The process of map generation is as follows:
