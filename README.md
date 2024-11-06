@@ -1,6 +1,6 @@
 # MapGenerator
 
-Generate maps of random islands from a gaussian field.
+Generate maps of random maps from a gaussian field.
 
 After being normalized and smoothed, only the mainland above a certain threshold is retained,
 being the rest considered as sea.

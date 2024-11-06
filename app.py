@@ -52,7 +52,7 @@ def generate_maps():
 
     images = []
         
-    for llavor in range(9):
+    for llavor in range(3):
         fig = single_map(kind_noise,boxsize,llavor,params,sigma,threshold)
         img_buf = io.BytesIO()
         fig.savefig(img_buf, format='png')
@@ -62,19 +62,23 @@ def generate_maps():
 
     return images
 
-with gr.Blocks() as demo:
-    gr.Markdown("# Map generator")
+md = """
+     # Map generator
 
-    gallery = gr.Gallery(label="Generated maps", show_label=False, elem_id="gallery", columns=[3], rows=[3], object_fit="contain", height="auto")
+     Generate maps of random maps from a gaussian field.
+
+     After being normalized and smoothed, only the mainland above a certain threshold is retained,
+     being the rest considered as sea.
+     """
+
+with gr.Blocks() as demo:
+
+    gr.Markdown(md)
+
+    gallery = gr.Gallery(label="Generated maps", show_label=False, elem_id="gallery", columns=[3], rows=[1], object_fit="contain", height="auto")
 
     btn = gr.Button("Generate maps", scale=1)
     btn.click(generate_maps, None, gallery)
-
-    # def fn(input):
-    #     return generate_maps()
-
-    
-    # demo = gr.Interface(fn=fn, inputs="text",outputs=gallery)
 
 if __name__ == "__main__":
     demo.launch()

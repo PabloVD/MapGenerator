@@ -24,9 +24,9 @@ def modified_gist_earth():
     return newcmap
 
 # Creates a random map
-def single_map(kind_noise,boxsize,llavor,params,sigma,threshold,make_island=0,cmap=modified_gist_earth()):
+def single_map(kind_noise,boxsize,llavor,params,sigma,threshold,make_island=0,cmap=modified_gist_earth(),axissize=6):
 
-    figsize = (6.,6.)
+    figsize = (axissize,axissize)
     fig, ax = plt.subplots(figsize=figsize)
     margins = {  #     vvv margin in inches
     "left"   :     0.,

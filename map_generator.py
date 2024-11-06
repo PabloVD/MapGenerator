@@ -1,5 +1,5 @@
 #---------------------------
-# Archipielago Generator
+# Map Generator
 # PabloVD
 # Started: 11/5/20
 #---------------------------
