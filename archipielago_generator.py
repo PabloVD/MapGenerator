@@ -69,25 +69,6 @@ else:
 
 
 for llavor in range(10):
-    single_map(kind_noise,boxsize,llavor,params,sigma,threshold,cities=include_cities)
+    single_map(kind_noise,boxsize,llavor,params,sigma,threshold)
 
-#plot_grid(kind_noise,boxsize,params,sigma,threshold,num_plots=3,cities=include_cities,make_island=make_island)
-
-
-exit()
-
-#--- MAIN ---#
-
-# Generate maps for different sigmas and thresholds
-
-llavors = range(1)
-sigmas = [sigma]
-thresholds = [threshold]
-
-for llavor in llavors:
-    for sigma in sigmas:
-        for threshold in thresholds:
-            single_map(kind_noise,boxsize,llavor,params,sigma,threshold,cities=include_cities)
-
-
-plt.show()
+plot_grid(kind_noise,boxsize,params,sigma,threshold,num_plots=3,make_island=0,cmap=modified_gist_earth())
