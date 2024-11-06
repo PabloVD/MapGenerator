@@ -48,7 +48,9 @@ else:
     params = [scale,octaves,persistence,lacunarity,boxsize]
 
 
-def generate_maps():
+def generate_maps(kind_noise,boxsize,amp,index):
+
+    params = [amp,index]
 
     images = []
         
@@ -71,6 +73,7 @@ md = """
      being the rest considered as sea.
      """
 
+"""
 with gr.Blocks() as demo:
 
     gr.Markdown(md)
@@ -79,6 +82,25 @@ with gr.Blocks() as demo:
 
     btn = gr.Button("Generate maps", scale=1)
     btn.click(generate_maps, None, gallery)
+"""
+
+gallery = gr.Gallery(label="Generated maps", show_label=False, elem_id="gallery", columns=[3], rows=[1], object_fit="contain", height="auto")
+
+demo = gr.Interface(
+    generate_maps,
+    [
+        gr.Dropdown(
+            ["gauss", "perlin"], label="Field", info="Kind of random field", value="gauss"
+        ),
+        gr.Slider(100, 1000, value=500, label="Box size")#, info="Box size"),
+        gr.Slider(0.1, 10, value=1, label="Power spectrum amplitude")#, info="Power spectrum amplitude"),
+        gr.Slider(-5, -1, value=-3, label="Spectral index")#, info="Spectral index"),
+        
+    ],
+    gallery,
+    title="Map generator",
+    description=md
+)
 
 if __name__ == "__main__":
     demo.launch()

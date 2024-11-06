@@ -33,6 +33,8 @@ threshold = 0.6
 sigma = 5.
 # Initial random seed
 llavor = 0
+# Amplitude of power spectrum
+amp = 1.
 # Spectral index for the power spectrum (only for Gauss noise)
 indexlaw = -3.
 # Hurst index for Fractional Brownian Field
@@ -59,11 +61,12 @@ persistence = 0.5
 lacunarity = 2.0
 
 if kind_noise == "gauss":
-    params = indexlaw
+    params = [amp, indexlaw]
 elif kind_noise == "fbm":
     params = hurst
 else:
     params = [scale,octaves,persistence,lacunarity,boxsize]
+    # params = {"scale":scale, "octaves":octaves, "persistence":persistence, "lacunarity":lacunarity}
 
 
 for llavor in range(10):

@@ -62,8 +62,8 @@ def generate_map(kind_noise,boxsize,llavor,params,sigma,threshold,boxsizey=None,
     np.random.seed(seed=llavor)
 
     if kind_noise=="gauss":
-        indexlaw = params
-        field = gaussian_field(boxsize,llavor,indexlaw)
+        amp, indexlaw = params
+        field = gaussian_field(boxsize,llavor,indexlaw,amp)
     elif kind_noise=="perlin":
         scale,octaves,persistence,lacunarity,boxsizey = params
         field = perlin_field(boxsize,llavor,scale,octaves,persistence,lacunarity,boxsizey=boxsizey)
@@ -86,4 +86,5 @@ def generate_map(kind_noise,boxsize,llavor,params,sigma,threshold,boxsizey=None,
         field = masked_field(field)
     field = smooth_field(field,sigma,gridsize=2*boxsize)
     field = mainland(field,threshold)
+    
     return field
