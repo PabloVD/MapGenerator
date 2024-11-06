@@ -1,6 +1,6 @@
 # MapGenerator
 
-Generate maps of random maps using different kinds of random fields.
+Generate procedural geographic maps from random fields.
 
 ## Map generation
 
@@ -13,7 +13,7 @@ The process of map generation is as follows:
 
 ## Random fields
 
-The included random fields are:
+The available random fields are:
 
 - `gauss`: Random gaussian field, with a given power spectrum, computed using the package [powerbox](https://powerbox.readthedocs.io/en/latest/index.html)
 - `perlin`: Perlin noise, computed using the package [noise](https://pypi.org/project/noise/)
