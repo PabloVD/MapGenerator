@@ -68,7 +68,7 @@ else:
     params = [scale,octaves,persistence,lacunarity,boxsize]
 
 
-for llavor in range(100):
+for llavor in range(10):
     single_map(kind_noise,boxsize,llavor,params,sigma,threshold,cities=include_cities)
 
 #plot_grid(kind_noise,boxsize,params,sigma,threshold,num_plots=3,cities=include_cities,make_island=make_island)
