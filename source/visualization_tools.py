@@ -2,7 +2,6 @@
 # Tools for visualization
 # PabloVD
 # Started: 11/5/20
-# Last changes: 11/24
 #---------------------------
 
 import matplotlib.pyplot as plt
@@ -40,8 +39,9 @@ def single_map(kind_noise,boxsize,llavor,params,sigma,threshold,make_island=0,cm
     ax.imshow(field,vmin=0.,vmax=1.,cmap=cmap)
 
     ax.set_axis_off()
-    fig.savefig("images/map_noise_{:}_seed_{:}_threshold_{:.1f}_sigma_{:.1f}.png".format(kind_noise,llavor,threshold,sigma))
-    plt.close(fig)
+
+    return fig
+    
 
 # Create (num_plots)x(num_plots) different maps of random islands, with different random seeds
 def plot_grid(kind_noise,boxsize,params,sigma,threshold,num_plots=3,make_island=0,cmap=modified_gist_earth()):

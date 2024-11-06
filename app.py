@@ -1,25 +1,7 @@
-#---------------------------
-# Archipielago Generator
-# PabloVD
-# Started: 11/5/20
-#---------------------------
-
-"""
----------------------------------------------------------------------------------
-Generate maps of random islands from a gaussian field.
-After being normalized and smoothed,
-only the mainland above a certain threshold is retained,
-being the rest considered as sea.
-The gaussian field is generated employing a cosmological package, powerbox,
-from a power spectrum as input.
----------------------------------------------------------------------------------
-"""
-
-# TO DO
-# try with different noises: opensimplex, fractional brownian noise...
-# plot planet with spherical projection
-
+import gradio as gr
 from source.visualization_tools import *
+from PIL import Image
+import io
 
 #--- Parameters ---#
 
@@ -66,9 +48,33 @@ else:
     params = [scale,octaves,persistence,lacunarity,boxsize]
 
 
-for llavor in range(10):
-    fig = single_map(kind_noise,boxsize,llavor,params,sigma,threshold)
-    fig.savefig("images/map_noise_{:}_seed_{:}_threshold_{:.1f}_sigma_{:.1f}.png".format(kind_noise,llavor,threshold,sigma))
-    plt.close(fig)
+def generate_maps():
 
-plot_grid(kind_noise,boxsize,params,sigma,threshold,num_plots=3,make_island=0,cmap=modified_gist_earth())
+    images = []
+        
+    for llavor in range(9):
+        fig = single_map(kind_noise,boxsize,llavor,params,sigma,threshold)
+        img_buf = io.BytesIO()
+        fig.savefig(img_buf, format='png')
+
+        img = Image.open(img_buf)
+        images.append(img)
+
+    return images
+
+with gr.Blocks() as demo:
+    gr.Markdown("# Map generator")
+
+    gallery = gr.Gallery(label="Generated maps", show_label=False, elem_id="gallery", columns=[3], rows=[3], object_fit="contain", height="auto")
+
+    btn = gr.Button("Generate maps", scale=1)
+    btn.click(generate_maps, None, gallery)
+
+    # def fn(input):
+    #     return generate_maps()
+
+    
+    # demo = gr.Interface(fn=fn, inputs="text",outputs=gallery)
+
+if __name__ == "__main__":
+    demo.launch()
