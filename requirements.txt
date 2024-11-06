@@ -1,3 +1,4 @@
 powerbox
 noise
 scipy
+matplotlib
