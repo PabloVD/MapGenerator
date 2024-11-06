@@ -20,12 +20,12 @@ import noise
 
 # Define power spectrum as a power law with an spectral index indexlaw
 # With lower the spectral indexes (redder noise), small structures are removed
-def powerspec(k,indexlaw=-3.,amp=1.):
-    return amp*k**indexlaw
+def powerspec(k,indexlaw=-3.):
+    return k**indexlaw
 
 # Generate a Gaussian field with a power law power spectrum
-def gaussian_field(boxsize,seed,indexlaw=-3.,amp=1.):
-    field = pbox.PowerBox(boxsize, lambda k: powerspec(k,indexlaw,amp), dim=2, boxlength=1.,seed=seed).delta_x()
+def gaussian_field(boxsize,seed,indexlaw=-3.):
+    field = pbox.PowerBox(boxsize, lambda k: powerspec(k,indexlaw), dim=2, boxlength=1.,seed=seed).delta_x()
     return field
 
 # Generate a Perlin field
